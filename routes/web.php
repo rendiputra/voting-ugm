@@ -14,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.landing');
+});
+Route::get('/voting-foto',function(){
+    return view('user.foto');
+});
+Route::get('/podcast',function(){
+    return view('user.podcast');
 });
 
 Route::get('/test', [App\Http\Controllers\FrontController::class, 'getIp'])->name('ip');
+
 
 Auth::routes();
 
