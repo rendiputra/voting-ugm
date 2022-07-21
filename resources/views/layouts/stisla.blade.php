@@ -43,9 +43,15 @@
               <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name}}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="/login/logout.php" class="dropdown-item has-icon text-danger">
-                <i class="fas fa-sign-out-alt"></i> Logout
+              <a class="dropdown-item has-icon text-danger" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                  <i class="fas fa-sign-out-alt"></i>{{ __('Logout') }}
               </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+              </form>
             </div>
           </li>
         </ul>
@@ -53,22 +59,18 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="/">Mafaza</a>
+            <a href="/">UGM</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="/">MZ</a>
+            <a href="/">UGM</a>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Admin Panel</li>
-            <li class="nav-item dropdown <?php if (isset($_GET['page'])) {
-                                            if ($_GET['page'] == "buat-artikel" || $_GET['page'] == "list-artikel" || $_GET['page'] == "update-artikel") {
-                                              echo "active";
-                                            }
-                                          } ?>">
-              <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Artikel</span></a>
+            <li class="nav-item dropdown @if(Request::is('foto','foto*')) active @endif">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Foto</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="/admin?page=list-artikel">List Artikel</a></li>
-                <li><a class="nav-link" href="/admin?page=buat-artikel">Buat Artikel Baru</a></li>
+                <li><a class="nav-link" href="{{ route('foto.index') }}">List Foto</a></li>
+                <li><a class="nav-link" href="{{ route('foto.show') }}">Tambah Foto Baru</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown <?php if (isset($_GET['page'])) {

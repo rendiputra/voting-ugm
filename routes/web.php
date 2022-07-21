@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', [App\Http\Controllers\FrontController::class, 'getIp'])->name('ip');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/foto', [App\Http\Controllers\FotoController::class, 'index'])->name('foto.index');
+Route::get('/foto/tambah', [App\Http\Controllers\FotoController::class, 'show'])->name('foto.show');
+Route::post('/foto/tambah', [App\Http\Controllers\FotoController::class, 'insert'])->name('foto.insert');
