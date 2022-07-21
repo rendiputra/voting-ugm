@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
-          <form action="{{ route('foto.insert') }}" enctype="multipart/form-data" method="post">
+          <form action="/foto/tambah" enctype="multipart/form-data" method="post">
             <input class="form-control" type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="card-header">
               <h4>Tambah Foto Baru</h4>

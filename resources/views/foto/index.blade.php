@@ -35,12 +35,21 @@
                       <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $d->judul }}</td>
-                        <td>{{ asset('assets/foto/')}}/{{ $d->image_path}}</td>
-                        <td>asd</td>
+                        <td><img src="{{ asset('assets/foto/')}}/{{ $d->image_path}}" alt="" width="100px"></td>
+                        <td>
+                          <button type="button" class="btn btn-danger mr-2">
+                            hapus
+                          </button>
+                        </td>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
+                <br>
+                <br>
+                <div class="d-flex justify-content-center">
+                  {!! $result->links() !!}
+                </div>
               </div>
             </div>
           </form>

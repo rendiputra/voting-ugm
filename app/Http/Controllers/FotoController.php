@@ -8,6 +8,8 @@ use DB;
 use File;
 use Auth;
 
+use App\Models\Foto;
+
 class FotoController extends Controller
 {
     /**
@@ -29,11 +31,16 @@ class FotoController extends Controller
     public function index()
     {
         $result = DB::table('foto')
-            ->get();
+            ->paginate(10);
         return view('foto.index', compact('result'));
     }
 
     public function show()
+    {
+        return view('foto.tambah');
+    }
+
+    public function delete()
     {
         return view('foto.tambah');
     }
@@ -45,7 +52,24 @@ class FotoController extends Controller
             'image'=> 'required|image|mimes:png,jpg,jpeg',
         ]);
 
-        // return route('list_foto');
-        return $req;
+        
+        $img = $req->image;
+        
+        $name = time().'.'.$img->getClientOriginalExtension();
+        $lokasi = public_path('assets/foto');
+        
+        if($img->move($lokasi,$name)){
+            $new = new Foto;
+            $new->judul = $req->judul;
+            $new->image_path = $name;
+
+            if($new->save()){
+                // return back()->with('sukses','Berhasil submit karya!');
+                return redirect()->route('foto.index')->with('sukses','Berhasil tambah foto!');
+            }
+
+            return redirect()->route('foto.index')->with('error','Gagal tambah foto!');
+        }
+        
     }
 }
