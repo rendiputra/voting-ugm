@@ -3,7 +3,7 @@
 @section('content')
 <section class="section">
   <div class="section-header">
-    <h1>Galerry</h1>
+    <h1>Foto</h1>
   </div>
 
   <div class="section-body">
@@ -11,9 +11,8 @@
     <div class="row">
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
-          <form action="buat_gallery_act.php" enctype="multipart/form-data" method="post">
             <div class="card-header">
-              <h4>List Gallery</h4>
+              <h4>List Foto</h4>
             </div>
             <div class="card-body">
               <a href="{{ route('foto.show') }}" class="btn btn-primary mb-3">Tambah Foto Baru</a>
@@ -35,11 +34,19 @@
                       <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $d->judul }}</td>
-                        <td><img src="{{ asset('assets/foto/')}}/{{ $d->image_path}}" alt="" width="100px"></td>
+                        <td><a href="{{ asset('assets/foto/')}}/{{ $d->image_path}}" class="btn btn-info" target="_BLANK">lihat Foto</a> </td>
                         <td>
-                          <button type="button" class="btn btn-danger mr-2">
-                            hapus
-                          </button>
+                          <a href="/foto/edit/{{ $d->id_foto }}" class="btn btn-primary mr-2">
+                            Update
+                          </a>
+                          {{-- <a href="/foto/hapus/{{ $d->id_foto }}" class="btn btn-danger mr-2" onclick="return confirm('Apakah yakin untuk menghapus foto ini?');">
+                            Delete
+                          </a> --}}
+                          
+                          <form id="delete{{ $no }}" action="{{ route('foto.delete', $d->id_foto) }}" method="POST" >
+                            @csrf
+                            <input type="submit" class="btn btn-danger mr-2" value="Delete"  onclick="return confirm('Apakah yakin untuk menghapus foto ini?');"> 
+                          </form>
                         </td>
                       </tr>
                     @endforeach
@@ -52,7 +59,6 @@
                 </div>
               </div>
             </div>
-          </form>
         </div>
       </div>
     </div>

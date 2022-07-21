@@ -67,59 +67,19 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Admin Panel</li>
             <li class="nav-item dropdown @if(Request::is('foto','foto*')) active @endif">
-              <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Foto</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="bi bi-card-image"></i> <span>Foto</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('foto.index') }}">List Foto</a></li>
                 <li><a class="nav-link" href="{{ route('foto.show') }}">Tambah Foto Baru</a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown <?php if (isset($_GET['page'])) {
-                                            if ($_GET['page'] == "buat-kegiatan" || $_GET['page'] == "list-kegiatan" || $_GET['page'] == "update-kegiatan") {
-                                              echo "active";
-                                            }
-                                          } ?>">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Kegiatan & Layanan</span></a>
+            <li class="nav-item dropdown @if(Request::is('podcast','podcast*')) active @endif">
+              <a href="#" class="nav-link has-dropdown"><i class="bi bi-chat-left-text"></i><span>Podcast</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="/admin?page=list-kegiatan">List Kegiatan</a></li>
-                <li><a class="nav-link" href="/admin?page=buat-kegiatan">Buat Kegiatan Baru</a></li>
+                <li><a class="nav-link" href="{{ route('podcast.index') }}">List Podcast</a></li>
+                <li><a class="nav-link" href="{{ route('podcast.show') }}">Tambah Podcast Baru</a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown <?php if (isset($_GET['page'])) {
-                                            if ($_GET['page'] == "buat-gallery" || $_GET['page'] == "list-gallery" || $_GET['page'] == "update-gallery") {
-                                              echo "active";
-                                            }
-                                          } ?>">
-              <a href="#" class="nav-link has-dropdown"><i class="bi bi-card-image"></i><span>Gallery</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="/admin?page=list-gallery">List Foto</a></li>
-                <li><a class="nav-link" href="/admin?page=buat-gallery">Tambah Foto Baru</a></li>
-              </ul>
-            </li>
-            <li class="<?php if (isset($_GET['page'])) {
-                          if ($_GET['page'] == "profile") {
-                            echo "active";
-                          }
-                        } ?>"><a class="nav-link " href="/admin?page=profile"><i class="bi bi-bank"></i> <span>Text Profile</span></a></li>
-            <li class="<?php if (isset($_GET['page'])) {
-                          if ($_GET['page'] == "donasi") {
-                            echo "active";
-                          }
-                        } ?>"><a class="nav-link " href="/admin?page=donasi"><i class="bi bi-cash-stack"></i> <span>Text Donasi</span></a></li>
-            <li class="<?php if (isset($_GET['page'])) {
-                          if ($_GET['page'] == "alamat") {
-                            echo "active";
-                          }
-                        } ?>"><a class="nav-link " href="/admin?page=alamat"><i class="bi bi-pin-angle"></i> <span>Alamat</span></a></li>
-            <li class="<?php if (isset($_GET['page'])) {
-                          if ($_GET['page'] == "list-contact-us") {
-                            echo "active";
-                          }
-                        } ?>"><a class="nav-link " href="/admin?page=list-contact-us"><i class="bi bi-chat-left-text"></i><span>Contact Us</span></a></li>
-            <li class="<?php if (isset($_GET['page'])) {
-                          if ($_GET['page'] == "akun") {
-                            echo "active";
-                          }
-                        } ?>"><a class="nav-link " href="/admin?page=list-akun"><i class="bi bi-file-person"></i><span>Kelola Akun</span></a></li>
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jul 2022 pada 07.51
+-- Waktu pembuatan: 21 Jul 2022 pada 13.46
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -36,6 +36,28 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `foto`
+--
+
+CREATE TABLE `foto` (
+  `id_foto` bigint(20) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `image_path` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `foto`
+--
+
+INSERT INTO `foto` (`id_foto`, `judul`, `image_path`, `created_at`, `updated_at`) VALUES
+(2, 'qwe', '1658400723.JPG', '2022-07-21 03:52:03', '2022-07-21 03:52:03'),
+(3, 'sad', '1658401097.JPG', '2022-07-21 03:58:17', '2022-07-21 03:58:17');
 
 -- --------------------------------------------------------
 
@@ -92,6 +114,20 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `podcast`
+--
+
+CREATE TABLE `podcast` (
+  `id_podcast` bigint(20) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `sound_path` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -106,6 +142,13 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'qwe', 'qwe@qwe.qwe', NULL, '$2y$10$CqMms3y0VveFBz84StDm7uOy6fTEFoeDP/E2OjnLACf3/f0GgEmKy', NULL, '2022-07-20 22:54:24', '2022-07-20 22:54:24');
+
 -- --------------------------------------------------------
 
 --
@@ -115,8 +158,6 @@ CREATE TABLE `users` (
 CREATE TABLE `voting_foto` (
   `id_voting_foto` bigint(20) NOT NULL,
   `id_foto` bigint(20) NOT NULL,
-  `judul` varchar(255) NOT NULL,
-  `image_path` text NOT NULL,
   `ip` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
@@ -130,6 +171,7 @@ CREATE TABLE `voting_foto` (
 
 CREATE TABLE `voting_podcast` (
   `id_voting_podcast` bigint(20) NOT NULL,
+  `id_podcast` bigint(20) NOT NULL,
   `judul` varchar(255) NOT NULL,
   `sound_path` text NOT NULL,
   `ip` text DEFAULT NULL,
@@ -147,6 +189,12 @@ CREATE TABLE `voting_podcast` (
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indeks untuk tabel `foto`
+--
+ALTER TABLE `foto`
+  ADD PRIMARY KEY (`id_foto`);
 
 --
 -- Indeks untuk tabel `migrations`
@@ -167,6 +215,12 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indeks untuk tabel `podcast`
+--
+ALTER TABLE `podcast`
+  ADD PRIMARY KEY (`id_podcast`);
 
 --
 -- Indeks untuk tabel `users`
@@ -192,6 +246,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `foto`
+--
+ALTER TABLE `foto`
+  MODIFY `id_foto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
@@ -204,10 +264,16 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `podcast`
+--
+ALTER TABLE `podcast`
+  MODIFY `id_podcast` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `voting_foto`

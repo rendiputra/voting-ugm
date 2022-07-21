@@ -30,7 +30,7 @@
                 <label>Gambar</label>
                 <div class="custom-file ">
                   <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" name="image">
-                  <label class="custom-file-label" for="customFile">Choose file</label>
+                  <label class="custom-file-label" for="customFile">Choose image</label>
                 </div>
                 @error('image')
                   <div class="invalid-feedback">
