@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
-          <form action="/foto/tambah" enctype="multipart/form-data" method="post">
+          <form action="{{ route('foto.insert') }}" enctype="multipart/form-data" method="post">
             <input class="form-control" type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="card-header">
               <h4>Tambah Foto Baru</h4>
@@ -19,8 +19,20 @@
             <div class="card-body">
               <div class="form-group">
                 <label>Judul</label>
-                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="customFile" name="judul" placeholder="Judul">
+                <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" placeholder="Judul">
                 @error('judul')
+                  <div class="invalid-feedback">
+                    <strong>{{ $message }}</strong>
+                  </div>
+                @enderror
+              </div>
+              <div class="form-group">
+                <label>Tingkatan</label>
+                  <select class="form-control" name="tingkatan">
+                    <option value="mahasiswa">Mahasiswa</option>
+                    <option value="pelajar">Pelajar</option>
+                  </select>
+                @error('tingkatan')
                   <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
                   </div>

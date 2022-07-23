@@ -16,13 +16,13 @@
 
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="/assets/assets-stisla/css/style.css">
-  <link rel="stylesheet" href="/assets/assets-stisla/css/components.css">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/assets/assets-stisla/css/style.css">
+  <link rel="stylesheet" href="/public/assets/assets-stisla/css/components.css">
+  <link href="/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/public/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
   <!-- plugin -->
-  <script src="/assets/vendor/ckeditor/ckeditor.js"></script>
+  <script src="/public/assets/vendor/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
         <ul class="navbar-nav navbar-right">
 
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-              <img alt="image" src="../assets/assets-stisla/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+              <!--<img alt="image" src="../assets/assets-stisla/img/avatar/avatar-1.png" class="rounded-circle mr-1">-->
               <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name}}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -66,14 +66,15 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Admin Panel</li>
-            <li class="nav-item dropdown @if(Request::is('foto','foto*')) active @endif">
+            <li class="@if(Request::is('home','home/*')) active @endif"><a class="nav-link " href="{{ route('home') }}"><i class="bi bi-file-person"></i><span>Top Vote</span></a></li>
+            <li class="nav-item dropdown @if(Request::is('foto.index','foto.index')) active @endif">
               <a href="#" class="nav-link has-dropdown"><i class="bi bi-card-image"></i> <span>Foto</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('foto.index') }}">List Foto</a></li>
                 <li><a class="nav-link" href="{{ route('foto.show') }}">Tambah Foto Baru</a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown @if(Request::is('podcast','podcast*')) active @endif">
+            <li class="nav-item dropdown @if(Request::is('podcast.index','podcast*')) active @endif">
               <a href="#" class="nav-link has-dropdown"><i class="bi bi-chat-left-text"></i><span>Podcast</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('podcast.index') }}">List Podcast</a></li>
@@ -96,7 +97,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2022 <div class="bullet"></div> Masjid Fatimatuzahra
+          Copyright &copy; 2022 <div class="bullet"></div> Pagelaran Kawolu
         </div>
         <div class="footer-right">
           V 1.0.1
@@ -111,7 +112,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="/assets/assets-stisla/js/stisla.js"></script>
+  <script src="/public/assets/assets-stisla/js/stisla.js"></script>
 
   <!-- JS Libraies -->
   <script src="../node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
@@ -121,11 +122,11 @@
   <script src="../node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
 
   <!-- Template JS File -->
-  <script src="/assets/assets-stisla/js/scripts.js"></script>
-  <script src="/assets/assets-stisla/js/custom.js"></script>
+  <script src="/public/assets/assets-stisla/js/scripts.js"></script>
+  <script src="/public/assets/assets-stisla/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
-  <script src="/assets/assets-stisla/js/page/index.js"></script>
+  <script src="/public/assets/assets-stisla/js/page/index.js"></script>
   <script>
     CKEDITOR.replace('editor1');
   </script>

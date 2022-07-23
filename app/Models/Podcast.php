@@ -11,5 +11,5 @@ class Podcast extends Model
 
     protected $table = "podcast";
     protected $primaryKey = "id_podcast";
-    protected $fillable = ['id_podcast','judul' ,'sound_path'];
+    protected $fillable = ['id_podcast','judul' ,'tingkatan','sound_path'];
 }

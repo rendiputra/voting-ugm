@@ -27,6 +27,18 @@
                 @enderror
               </div>
               <div class="form-group">
+                <label>Tingkatan</label>
+                  <select class="form-control" name="tingkatan">
+                    <option value="mahasiswa">Mahasiswa</option>
+                    <option value="pelajar">Pelajar</option>
+                  </select>
+                @error('tingkatan')
+                  <div class="invalid-feedback">
+                    <strong>{{ $message }}</strong>
+                  </div>
+                @enderror
+              </div>
+              <div class="form-group">
                 <label>Upload file suara</label>
                 <div class="custom-file ">
                   <input type="file" class="custom-file-input @error('sound') is-invalid @enderror" id="customFile" name="sound">

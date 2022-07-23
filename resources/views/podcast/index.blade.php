@@ -23,6 +23,8 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Nama</th>
+                      <th scope="col">Tingkatan</th>
+                      <th scope="col">Sound</th>
                       <th scope="col">Aksi</th>
                     </tr>
                   </thead>
@@ -34,11 +36,15 @@
                       <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $d->judul }}</td>
+                        <td>{{ $d->tingkatan }}</td>
+                        <td> <a href="/public/assets/sound/{{ $d->sound_path }}" class="btn btn-info mr-2"  target="_BLANK">
+                            Dengarkan Podcast
+                          </a></td>
                         <td>
-                          <a href="/podcast/edit/{{ $d->id_podcast }}" class="btn btn-primary mr-2">
+                          <a href="/admin/podcast/edit/{{ $d->id_podcast }}" class="btn btn-info mr-2">
                             Update
                           </a>
-                          {{-- <a href="/podcast/hapus/{{ $d->id_podcast }}" class="btn btn-danger mr-2" onclick="return confirm('Apakah yakin untuk menghapus podcast ini?');">
+                          {{-- <a href="/podcast/hapus/{{ $d->id_podcast }}" class="btn btn-info mr-2" onclick="return confirm('Apakah yakin untuk menghapus podcast ini?');">
                             Delete
                           </a> --}}
                           <form id="delete{{ $no }}" action="{{ route('podcast.delete', $d->id_podcast) }}" method="POST" >

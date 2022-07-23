@@ -22,6 +22,7 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Nama</th>
+                      <th scope="col">Tingkatan</th>
                       <th scope="col">Gambar</th>
                       <th scope="col">Aksi</th>
                     </tr>
@@ -34,9 +35,10 @@
                       <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $d->judul }}</td>
-                        <td><a href="{{ asset('assets/foto/')}}/{{ $d->image_path}}" class="btn btn-info" target="_BLANK">lihat Foto</a> </td>
+                        <td>{{ $d->tingkatan }}</td>
+                        <td><a href="/public/assets/foto/{{ $d->image_path}}" class="btn btn-info" target="_BLANK">lihat Foto</a> </td>
                         <td>
-                          <a href="/foto/edit/{{ $d->id_foto }}" class="btn btn-primary mr-2">
+                          <a href="{{ route('foto.edit', $d->id_foto) }}" class="btn btn-primary mr-2">
                             Update
                           </a>
                           {{-- <a href="/foto/hapus/{{ $d->id_foto }}" class="btn btn-danger mr-2" onclick="return confirm('Apakah yakin untuk menghapus foto ini?');">
