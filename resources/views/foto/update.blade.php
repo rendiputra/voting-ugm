@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
-          <form action="/foto/update/{{ $result->id_foto }}" enctype="multipart/form-data" method="post">
+          <form action="{{ route('foto.update', $result->id_foto) }}" enctype="multipart/form-data" method="post">
             <input class="form-control" type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="card-header">
               <h4>Update Foto Baru</h4>
@@ -22,6 +22,18 @@
                 <input type="text" class="form-control @error('judul') is-invalid @enderror" id="customFile" name="judul" placeholder="Judul" value="{{ $result->judul }}">
                 <input type="hidden" class="form-control" name="_id" placeholder="Judul" value="{{ $result->id_foto }}">
                 @error('judul')
+                  <div class="invalid-feedback">
+                    <strong>{{ $message }}</strong>
+                  </div>
+                @enderror
+              </div>
+              <div class="form-group">
+                <label>Tingkatan</label>
+                  <select class="form-control" name="tingkatan">
+                    <option value="mahasiswa" @if($result->tingkatan == "mahasiswa") checked @endif>Mahasiswa</option>
+                    <option value="pelajar" @if($result->tingkatan == "pelajar") checked @endif>Pelajar</option>
+                  </select>
+                @error('tingkatan')
                   <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
                   </div>

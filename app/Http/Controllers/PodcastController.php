@@ -59,6 +59,7 @@ class PodcastController extends Controller
         $req->validate([
             'judul'=> 'required|max:200',
             'sound'=> 'required',
+            'tingkatan'=> 'required',
         ]);
 
         
@@ -70,6 +71,7 @@ class PodcastController extends Controller
         if($sound->move($lokasi,$name)){
             $new = new Podcast;
             $new->judul = $req->judul;
+            $new->tingkatan = $req->tingkatan;
             $new->sound_path = $name;
 
             if($new->save()){

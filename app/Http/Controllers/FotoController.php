@@ -7,6 +7,7 @@ use image;
 use DB;
 use File;
 use Auth;
+use Webp;
 
 use App\Models\Foto;
 
@@ -39,9 +40,9 @@ class FotoController extends Controller
     public function edit($id)
     {
         $result = DB::table('foto')
-        ->where('id_foto', $id)
-        ->where('status', '=', 1)
-        ->first();
+            ->where('id_foto', $id)
+            ->where('status', '=', 1)
+            ->first();
 
         return view('foto.update', compact('result'));
     }
@@ -59,6 +60,7 @@ class FotoController extends Controller
         if($cek){
             if($req->image){
                 $img = $req->image;
+                $img = Webp::make($img);
 
                 $name = time().'.'.$img->getClientOriginalExtension();
                 $lokasi = public_path('assets/foto');
@@ -70,6 +72,7 @@ class FotoController extends Controller
                                 
                             ])->update([
                                 'judul' => $req->judul,
+                                'tingkatan' => $req->tingkatan,
                                 'image_path' => $name,
                             ]);
                     if($edit){
@@ -84,6 +87,7 @@ class FotoController extends Controller
                             
                         ])->update([
                             'judul' => $req->judul,
+                            'tingkatan' => $req->tingkatan,
                         ]);
                 if($edit){
                     return redirect()->route('foto.index')->with('sukses','Berhasil edit data foto!');
@@ -122,17 +126,20 @@ class FotoController extends Controller
         $req->validate([
             'judul'=> 'required|max:200',
             'image'=> 'required|image|mimes:png,jpg,jpeg',
+            'image'=> 'required',
         ]);
 
         
         $img = $req->image;
+        $img = Webp::make($img);
         
-        $name = time().'.'.$img->getClientOriginalExtension();
+        $name = time().'.webp';
         $lokasi = public_path('assets/foto');
         
-        if($img->move($lokasi,$name)){
+        if($img->save($lokasi."/".$name)){
             $new = new Foto;
             $new->judul = $req->judul;
+            $new->tingkatan = $req->tingkatan;
             $new->image_path = $name;
 
             if($new->save()){

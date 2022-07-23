@@ -3094,7 +3094,7 @@ Blocks Styles
 * Banner Styles
 */
 .banner {
-  min-height: 100vh;
+  height: 100vh;
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
@@ -7209,10 +7209,10 @@ $red: #881d12;
 
 .vote-btn {
   appearance: none;
-  border-radius: 3px;
+  border-radius: 2px;
   border: 0.5 rgb(186, 186, 186);
   background: $red;
-  padding: 15px 12px 15px 40px;
+  padding: 15px 15px 15px 15px;
   font: bold 9px/1.2 arial;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -7223,6 +7223,7 @@ $red: #881d12;
   transition: all 0.3s ease-out;
   cursor: pointer;
   overflow: hidden;
+}
 
   .icon {
     position: absolute;
@@ -7237,7 +7238,6 @@ $red: #881d12;
       no-repeat 2px 1px;
     background-size: 16px auto;
     transition: all 0.3s ease-out;
-  }
 }
 
 .vote-btn.complete {

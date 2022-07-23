@@ -11,5 +11,5 @@ class Foto extends Model
 
     protected $table = "foto";
     protected $primaryKey = "id_foto";
-    protected $fillable = ['id_foto','judul', 'status' ,'image_path'];
+    protected $fillable = ['id_foto','judul', 'tingkatan', 'status' ,'image_path'];
 }
